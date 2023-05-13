@@ -85,13 +85,13 @@ exports.signUp = (req, res) => {
                 // });
               })
               .catch((err) => {
-                res.json({
+                res.status(500).json({
                   error: err,
                 });
               });
           })
           .catch((err) => {
-            res.json({
+            res.status(400).json({
               status: "FAILED",
               message: "An error while hashing the password",
             });
@@ -99,7 +99,7 @@ exports.signUp = (req, res) => {
       }
     })
     .catch((err) =>
-      res.json({
+      res.status(500).json({
         error: err,
       })
     );
@@ -133,27 +133,27 @@ const sendVerifationEmail = ({ _id, email }, res) => {
           transporter
             .sendMail(mailOptions)
             .then((resp) => {
-              res.json({
+              res.status(200).json({
                 STATUS: "PENDING",
                 message: "Verification email is sent",
               });
             })
             .catch((error) => {
-              res.json({
+              res.status(400).json({
                 err: "Verification email failed",
                 error,
               });
             });
         })
         .catch((error) => {
-          res.json({
+          res.status(400).json({
             err: "Could not save verification email data",
             error,
           });
         });
     })
     .catch((error) => {
-      res.json({
+      res.status(400).json({
         err: "An error occurred while hashing email data",
         error,
       });
@@ -192,13 +192,13 @@ exports.signIn = (req, res) => {
           // console.log("password",password,hashedPassword)
           .then((user) => {
             if (user) {
-              return res.json({
+              return res.status(200).json({
                 token,
                 user: result,
                 success: true,
               });
             } else {
-              res.json({
+              res.status(400).json({
                 error: "Invalid Email OR Password",
               });
             }
@@ -210,7 +210,7 @@ exports.signIn = (req, res) => {
           });
       }
       else{
-        res.status(400).json({
+        res.status(401).json({
           error: "User is not verified ",
         })
       }
@@ -218,7 +218,7 @@ exports.signIn = (req, res) => {
     .catch((err, users) => {
       if (err || !users) {
         console.log(" error", err);
-        return res.status(400).json({
+        return res.status(406).json({
           err: "NOT ABLE TO FIND USER IN DATABASE",
         });
       }

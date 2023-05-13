@@ -5,15 +5,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      body{
+        display: flex;
+        justify-content: center;
+      }
+      </style>
   </head>
   <body>
-    <h1>this is password reset pa</h1>
+    <h1>User is Verified</h1>
   </body>
   <script>
-    const queryString = window.location.search
-    const urlParams = new URLSearchParams(queryString)
-    const error = urlParams.get("error")
-    const message = urlParams.get("message")
-    console.log(message)
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const error = urlParams.get("error");
+    const message = urlParams.get("message");
+    console.log(message);
   </script>
 </html>

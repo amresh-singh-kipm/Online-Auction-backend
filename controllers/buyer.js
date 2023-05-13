@@ -58,7 +58,7 @@ exports.placeBid = (req, res) => {
                         const bidder = new Bidder({
                           sellerId: sellerId,
                           productId: productId,
-                          bidderList: bidderList.push(userId),
+                          bidderList: userId,
                         });
                         bidder
                           .save() 
